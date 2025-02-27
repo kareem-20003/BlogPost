@@ -1,0 +1,194 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "User And Blogs API",
+        "description": "User Creates Blogs",
+        "licence": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:8081",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "User and Blogs",
+            "description": "API"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produced": [
+        "application/json"
+    ],
+    "paths": {
+        "/blogs/getAllBlogs": {
+            "get": {
+                "description": "Return List of Blogs",
+                "produces": "application/json",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/blog"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/bolgs//addBlog/{userId}": {
+            "post": {
+                "description": "add new blog",
+                "produces": "application/json",
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "example": "sdg45dsdf45sd"
+                        }
+                    },
+                    {
+                        "name": "blog",
+                        "in": "body",
+                        "description": "blog instance",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "example": "blog title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "example": "blog description"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/bolgs/updateBlog/{id}": {
+            "put": {
+                "description": "Update blog",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Blog Id",
+                        "required": true,
+                        "type": "string",
+                        "example": "af54sa5f45asf"
+                    },
+                    {
+                        "name": "blog",
+                        "in": "body",
+                        "description": "edit blog",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "title": {
+                                    "type": "string",
+                                    "required": false,
+                                    "example": "blog title"
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "required": false,
+                                    "example": "blog description"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Update blog",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "/bolgs/deleteBlog/{userId}/{blogId}": {
+            "delete": {
+                "description": "Delete blog",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "description": "User Id",
+                        "required": true,
+                        "type": "string",
+                        "example": "af54sa5f45asf"
+                    },
+                    {
+                        "name": "blogId",
+                        "in": "path",
+                        "description": "Blog Id",
+                        "required": true,
+                        "type": "string",
+                        "example": "af54sa5f45asf"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "blog": {
+            "type": "object",
+            "required": [
+                "title",
+                "description"
+            ],
+            "properties": {
+                "title": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "_id": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
